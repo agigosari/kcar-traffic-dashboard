@@ -666,6 +666,36 @@
       color: #0f172a;
     }
 
+    
+    /* Collapsible Chart Card Styles */
+    .chart-card-collapsible {
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .chart-card-collapsible:hover {
+      border-color: #94a3b8;
+    }
+    .chart-card-collapsible .chart-header {
+      margin-bottom: 0 !important;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .chart-card-collapsible .chart-title {
+      line-height: 1.3;
+      margin: 0;
+      font-size: 14px;
+      font-weight: 700;
+      color: #1f2937;
+    }
+    .chart-card-collapsible .chart-subtitle {
+      line-height: 1.3;
+      margin-top: 4px;
+      font-size: 11px;
+      color: #64748b;
+      font-weight: 500;
+    }
+
     /* Modal for UTM Daily Breakdown */
     .utm-modal-overlay {
       position: fixed;
@@ -1752,25 +1782,30 @@
     </div>
 
     <!-- Charts Section -->
-    <div class="charts-container">
+    <div class="charts-container" style="display: flex; flex-direction: column; gap: 16px; margin-top: 8px; margin-bottom: 28px;">
       <!-- Chart 1: Spend vs Traffic -->
       <div class="chart-card">
         <div class="chart-header">
           <div class="chart-title">📈 광고비 vs Paid 트래픽 추이 (최근 10주)</div>
           <div class="chart-desc">주간 일평균 총 광고비와 UV 및 유효고객 추이 (좌측: 트래픽 명수, 우측: 광고비 원)</div>
         </div>
-        <div class="chart-wrapper">
+        <div class="chart-wrapper" style="height: 260px;">
           <canvas id="weeklyChart1"></canvas>
         </div>
       </div>
 
-      <!-- Chart 2: Media Spend Breakdown -->
-      <div class="chart-card">
+      <!-- Chart 2: Major Media Breakdown (Collapsible Accordion, Default Collapsed) -->
+      <div class="chart-card chart-card-collapsible" id="cardMediaTrend" onclick="toggleMediaChart()" title="클릭하여 주요 매체별 추이 차트 펼치기/접기">
         <div class="chart-header">
-          <div class="chart-title">📊 주요 매체별 광고비 추이 (최근 10주)</div>
-          <div class="chart-desc">주간 일평균 매체별 집행 추이 (단위: 원)</div>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <div class="chart-title">📊 주요 매체별 광고비 추이 (최근 10주)</div>
+            <button class="toggle-btn collapsed" id="btnChartToggle" onclick="event.stopPropagation(); toggleMediaChart();" title="주요 매체별 추이 차트 펼치기/접기">▶</button>
+          </div>
+          <div class="chart-subtitle" id="chartToggleSubtitle">
+            클릭하여 차트 펼치기 (상위 5개 매체: 크리테오, RTB, 네이버, 모비온, 구글SA)
+          </div>
         </div>
-        <div class="chart-wrapper">
+        <div class="chart-body" id="bodyMediaTrend" style="display: none; height: 260px; margin-top: 14px; padding-top: 10px; border-top: 1px solid #f1f5f9;">
           <canvas id="weeklyChart2"></canvas>
         </div>
       </div>
@@ -1866,25 +1901,30 @@
     </div>
 
     <!-- Charts Section -->
-    <div class="charts-container" style="margin-top: 24px;">
+    <div class="charts-container" style="display: flex; flex-direction: column; gap: 16px; margin-top: 24px; margin-bottom: 28px;">
       <!-- Chart 1: Daily Trend -->
       <div class="chart-card">
         <div class="chart-header">
           <div class="chart-title">📈 광고비 vs Paid 트래픽 일자별 추이 (최근 90일)</div>
           <div class="chart-desc">일별 총 광고비와 UV 및 유효고객 추이 (좌측: 트래픽 명수, 우측: 광고비 원)</div>
         </div>
-        <div class="chart-wrapper">
+        <div class="chart-wrapper" style="height: 260px;">
           <canvas id="dailyChart1"></canvas>
         </div>
       </div>
 
-      <!-- Chart 2: Media Spend Trend -->
-      <div class="chart-card">
+      <!-- Chart 2: Major Media Breakdown Daily (Collapsible Accordion, Default Collapsed) -->
+      <div class="chart-card chart-card-collapsible" id="cardMediaTrendDaily" onclick="toggleMediaChartDaily()" title="클릭하여 주요 매체별 추이 차트 펼치기/접기">
         <div class="chart-header">
-          <div class="chart-title">📊 주요 매체별 광고비 일자별 추이 (최근 90일)</div>
-          <div class="chart-desc">5대 핵심 매체의 일별 집행 추이 (단위: 원)</div>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <div class="chart-title">📊 주요 매체별 광고비 일자별 추이 (최근 90일)</div>
+            <button class="toggle-btn collapsed" id="btnChartToggleDaily" onclick="event.stopPropagation(); toggleMediaChartDaily();" title="주요 매체별 추이 차트 펼치기/접기">▶</button>
+          </div>
+          <div class="chart-subtitle" id="chartToggleSubtitleDaily">
+            클릭하여 차트 펼치기 (상위 5개 매체: 크리테오, RTB, 네이버, 모비온, 구글SA)
+          </div>
         </div>
-        <div class="chart-wrapper">
+        <div class="chart-body" id="bodyMediaTrendDaily" style="display: none; height: 260px; margin-top: 14px; padding-top: 10px; border-top: 1px solid #f1f5f9;">
           <canvas id="dailyChart2"></canvas>
         </div>
       </div>
@@ -2012,32 +2052,64 @@
     }
   });
 
-  const ctxWeekly2 = document.getElementById('weeklyChart2').getContext('2d');
-  const weeklyChart2 = new Chart(ctxWeekly2, {
-    type: 'line',
-    data: {
-      labels: weeklyLabels,
-      datasets: [
-        { label: '크리테오DA', data: [3533048,4908322,3571734,3205456,4591317,6844001,6703479,6440655,6815230,2389809], borderColor: '#2563eb', borderWidth: 2, pointRadius: 3, tension: 0.2 },
-        { label: 'RTB 하우스', data: [796518,0,0,0,886828,1073898,1437793,1559945,1638407,737405], borderColor: '#10b981', borderWidth: 2, pointRadius: 3, tension: 0.2 },
-        { label: '네이버GFA', data: [1014960,1219152,1673381,2886647,2271184,2291295,1688646,1410257,1336955,973831], borderColor: '#059669', borderWidth: 2, pointRadius: 3, tension: 0.2 },
-        { label: '모비온', data: [0,0,0,352689,401782,398654,438561,485373,661994,811773], borderColor: '#f59e0b', borderWidth: 2, pointRadius: 3, tension: 0.2 },
-        { label: '사기_구글SA', data: [339985,455420,789727,1583947,1445787,1045313,602402,518196,519137,360379], borderColor: '#8b5cf6', borderWidth: 2, pointRadius: 3, tension: 0.2 }
-      ]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: { position: 'top', labels: { boxWidth: 10, font: { size: 10.5 } } },
-        tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + Math.round(ctx.parsed.y).toLocaleString() + '원' } }
-      },
-      scales: {
-        y: { ticks: { callback: v => (v / 10000).toFixed(0) + '만' }, grid: { color: '#f1f5f9' } },
-        x: { grid: { display: false }, ticks: { font: { size: 10.5 } } }
+  // Weekly Chart 2: Toggle & Lazy Init (Default Collapsed)
+  let isChartExpanded = false;
+  let weeklyChart2Instance = null;
+
+  function toggleMediaChart() {
+    isChartExpanded = !isChartExpanded;
+    const body = document.getElementById('bodyMediaTrend');
+    const btn = document.getElementById('btnChartToggle');
+    const sub = document.getElementById('chartToggleSubtitle');
+
+    if (isChartExpanded) {
+      body.style.display = 'block';
+      btn.innerText = '▼';
+      btn.classList.remove('collapsed');
+      sub.innerText = '상위 5개 매체 일평균 변동 (클릭하여 접기)';
+      if (!weeklyChart2Instance) {
+        initWeeklyChart2();
+      } else {
+        weeklyChart2Instance.resize();
+        weeklyChart2Instance.update();
       }
+    } else {
+      body.style.display = 'none';
+      btn.innerText = '▶';
+      btn.classList.add('collapsed');
+      sub.innerText = '클릭하여 차트 펼치기 (상위 5개 매체: 크리테오, RTB, 네이버, 모비온, 구글SA)';
     }
-  });
+  }
+
+  function initWeeklyChart2() {
+    if (weeklyChart2Instance) return;
+    const ctxWeekly2 = document.getElementById('weeklyChart2').getContext('2d');
+    weeklyChart2Instance = new Chart(ctxWeekly2, {
+      type: 'line',
+      data: {
+        labels: weeklyLabels,
+        datasets: [
+          { label: '크리테오DA', data: [3533048,4908322,3571734,3205456,4591317,6844001,6703479,6440655,6815230,2389809], borderColor: '#2563eb', borderWidth: 2, pointRadius: 3, tension: 0.2 },
+          { label: 'RTB 하우스', data: [796518,0,0,0,886828,1073898,1437793,1559945,1638407,737405], borderColor: '#10b981', borderWidth: 2, pointRadius: 3, tension: 0.2 },
+          { label: '네이버GFA', data: [1014960,1219152,1673381,2886647,2271184,2291295,1688646,1410257,1336955,973831], borderColor: '#059669', borderWidth: 2, pointRadius: 3, tension: 0.2 },
+          { label: '모비온', data: [0,0,0,352689,401782,398654,438561,485373,661994,811773], borderColor: '#f59e0b', borderWidth: 2, pointRadius: 3, tension: 0.2 },
+          { label: '사기_구글SA', data: [339985,455420,789727,1583947,1445787,1045313,602402,518196,519137,360379], borderColor: '#8b5cf6', borderWidth: 2, pointRadius: 3, tension: 0.2 }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { position: 'top', labels: { boxWidth: 10, font: { size: 10.5 } } },
+          tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + Math.round(ctx.parsed.y).toLocaleString() + '원' } }
+        },
+        scales: {
+          y: { ticks: { callback: v => (v / 10000).toFixed(0) + '만' }, grid: { color: '#f1f5f9' } },
+          x: { grid: { display: false }, ticks: { font: { size: 10.5 } } }
+        }
+      }
+    });
+  }
 
 
   // Daily View Scripts
@@ -2144,6 +2216,38 @@
       }
     });
 
+    // dailyChart2 is lazy-initialized upon toggleMediaChartDaily()
+  }
+
+  // Daily Chart 2: Toggle & Lazy Init (Default Collapsed)
+  let isChartExpandedDaily = false;
+  function toggleMediaChartDaily() {
+    isChartExpandedDaily = !isChartExpandedDaily;
+    const body = document.getElementById('bodyMediaTrendDaily');
+    const btn = document.getElementById('btnChartToggleDaily');
+    const sub = document.getElementById('chartToggleSubtitleDaily');
+
+    if (isChartExpandedDaily) {
+      body.style.display = 'block';
+      btn.innerText = '▼';
+      btn.classList.remove('collapsed');
+      sub.innerText = '상위 5개 매체 일별 변동 (클릭하여 접기)';
+      if (!dailyChart2Instance) {
+        initDailyChart2();
+      } else {
+        dailyChart2Instance.resize();
+        dailyChart2Instance.update();
+      }
+    } else {
+      body.style.display = 'none';
+      btn.innerText = '▶';
+      btn.classList.add('collapsed');
+      sub.innerText = '클릭하여 차트 펼치기 (상위 5개 매체: 크리테오, RTB, 네이버, 모비온, 구글SA)';
+    }
+  }
+
+  function initDailyChart2() {
+    if (dailyChart2Instance) return;
     const ctx2 = document.getElementById('dailyChart2').getContext('2d');
     dailyChart2Instance = new Chart(ctx2, {
       type: 'line',
