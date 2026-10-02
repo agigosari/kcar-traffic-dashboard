@@ -863,10 +863,13 @@
         yUsers: {
           type: 'linear',
           position: 'right',
-          grace: '12%',
+          min: 0,
+          max: 100000,
           grid: { drawOnChartArea: false },
           ticks: {
-            callback: v => (v / 10000).toFixed(0) + '만명'
+            stepSize: 10000,
+            callback: v => (v === 0 ? '0' : (v / 10000) + '만'),
+            font: { size: 10.5 }
           }
         },
         x: {
@@ -1074,9 +1077,16 @@
             grid: { color: '#f1f5f9' }
           },
           yUsers: {
-            type: 'linear', position: 'right', grace: '12%',
+            type: 'linear',
+            position: 'right',
+            min: 0,
+            max: 100000,
             grid: { drawOnChartArea: false },
-            ticks: { callback: v => (v / 10000).toFixed(0) + '만명' }
+            ticks: {
+              stepSize: 10000,
+              callback: v => (v === 0 ? '0' : (v / 10000) + '만'),
+              font: { size: 10.5 }
+            }
           },
           x: {
             grid: { display: false },
