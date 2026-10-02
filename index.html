@@ -205,7 +205,6 @@
       font-weight: 700;
       border-top: 1.5px solid var(--border-dark);
       border-bottom: 1px solid var(--border-color);
-      color: #000;
     }
     tr.group-header-section td {
       background: #f8fafc;
@@ -221,9 +220,21 @@
       font-weight: 700;
       padding-right: 14px;
     }
-    .wow-up { color: var(--color-blue); }
-    .wow-down { color: var(--color-red); }
-    .wow-neutral { color: #6b7280; font-weight: 500; }
+    table.traffic-table tbody tr td.col-wow.wow-up,
+    .wow-up {
+      color: var(--color-blue) !important; /* 상승: 파란색 */
+      font-weight: 700 !important;
+    }
+    table.traffic-table tbody tr td.col-wow.wow-down,
+    .wow-down {
+      color: var(--color-red) !important; /* 하락: 빨간색 */
+      font-weight: 700 !important;
+    }
+    table.traffic-table tbody tr td.col-wow.wow-neutral,
+    .wow-neutral {
+      color: #64748b !important;
+      font-weight: 500 !important;
+    }
     
     .toggle-btn {
       background: none;
