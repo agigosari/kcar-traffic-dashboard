@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2026 연말 및 크리스마스 송년회 제안서 &lt;서리태 모임&gt;</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+
+    * {
+      box-sizing: border-box;
+      font-family: 'Malgun Gothic', 'Noto Sans KR', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background: linear-gradient(180deg, #1f4232 0%, #2a5540 60%, #2e5a44 100%);
+      color: #1e2923;
+      overflow-x: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .header-pill {
+      background: #b33b30;
+      border: 2.5px solid #f2c977;
+      border-radius: 9999px;
+      box-shadow:
+        0 14px 32px rgba(10, 28, 20, 0.45),
+        0 0 24px rgba(242, 201, 119, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25);
+      animation: headerFloat 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes headerFloat {
+      0% { transform: translateY(0px); }
+      100% { transform: translateY(-4px); }
+    }
+
+    .seoritae-neon {
+      color: #ffffff;
+      text-shadow:
+        0 0 6px rgba(255, 245, 220, 0.9),
+        0 0 16px rgba(255, 195, 90, 0.8),
+        0 0 28px rgba(255, 140, 25, 0.55);
+      animation: neonGlow 2.8s ease-in-out infinite alternate;
+    }
+
+    @keyframes neonGlow {
+      0% {
+        text-shadow:
+          0 0 4px rgba(255, 245, 220, 0.7),
+          0 0 12px rgba(255, 195, 90, 0.55);
+      }
+      100% {
+        text-shadow:
+          0 0 10px #ffffff,
+          0 0 22px #ffd27d,
+          0 0 38px #ff9d2e;
+      }
+    }
+
+    .secret-stamp {
+      transform: rotate(-6.5deg);
+      background: #922724;
+      border: 3.5px solid #f2c977;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.38);
+      animation: stampSlam 0.65s cubic-bezier(0.22, 1.3, 0.36, 1) 0.25s both;
+    }
+
+    .secret-stamp-inner {
+      border: 1.5px dashed rgba(255, 255, 255, 0.85);
+    }
+
+    @keyframes stampSlam {
+      0% { transform: scale(2.3) rotate(-18deg); opacity: 0; }
+      70% { transform: scale(0.94) rotate(-5deg); opacity: 1; }
+      100% { transform: scale(1) rotate(-6.5deg); opacity: 1; }
+    }
+
+    .plan-card {
+      background: #fdfbf7;
+      border: 3px solid #f2c977;
+      border-radius: 22px;
+      box-shadow: 0 16px 36px rgba(10, 26, 18, 0.42);
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+    }
+
+    .plan-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 22px 44px rgba(10, 26, 18, 0.55), 0 0 22px rgba(242, 201, 119, 0.32);
+    }
+
+    .guest-stage {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      border-radius: 14px;
+      transition: all 0.35s ease;
+    }
+
+    .guest-stage::after {
+      content: '';
+      position: absolute;
+      top: -60%;
+      left: -130%;
+      width: 75%;
+      height: 220%;
+      background: linear-gradient(
+        115deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.15) 28%,
+        rgba(255, 236, 165, 0.92) 50%,
+        rgba(255, 255, 255, 0.15) 72%,
+        transparent 100%
+      );
+      transform: skewX(-25deg);
+      pointer-events: none;
+      opacity: 0;
+    }
+
+    .guest-stage.shimmer-active::after {
+      opacity: 1;
+      animation: lightSweep 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    @keyframes lightSweep {
+      0% { left: -130%; }
+      100% { left: 165%; }
+    }
+
+    .guest-name {
+      position: relative;
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 10px;
+      font-weight: 800;
+      color: #1e2923;
+      opacity: 0.12;
+      filter: blur(8px);
+      transform: translateY(8px) scale(0.92);
+      transition:
+        opacity 0.95s cubic-bezier(0.22, 1, 0.36, 1),
+        filter 0.95s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.95s cubic-bezier(0.22, 1, 0.36, 1),
+        text-shadow 0.95s ease;
+    }
+
+    .guest-name.revealed {
+      opacity: 1;
+      filter: blur(0px);
+      transform: translateY(0) scale(1);
+      animation: magicRevealGlow 1.15s cubic-bezier(0.22, 1.25, 0.36, 1);
+    }
+
+    @keyframes magicRevealGlow {
+      0% {
+        opacity: 0.12;
+        filter: blur(8px) brightness(1);
+        transform: translateY(8px) scale(0.9);
+      }
+      50% {
+        opacity: 1;
+        filter: blur(0px) brightness(1.3);
+        transform: translateY(-3px) scale(1.08);
+        text-shadow: 0 0 18px rgba(255, 200, 50, 0.95), 0 0 32px rgba(255, 165, 0, 0.65);
+        background: rgba(255, 243, 195, 0.75);
+      }
+      100% {
+        opacity: 1;
+        filter: blur(0px) brightness(1);
+        transform: translateY(0) scale(1);
+        text-shadow: none;
+        background: transparent;
+      }
+    }
+
+    .guest-dot {
+      opacity: 0.2;
+      transition: opacity 0.8s ease;
+    }
+    .guest-dot.revealed {
+      opacity: 1;
+    }
+
+    .sparkle-particle {
+      position: absolute;
+      pointer-events: none;
+      width: 15px;
+      height: 15px;
+      animation: sparkleFloat 1.15s ease-out forwards;
+      z-index: 40;
+    }
+
+    @keyframes sparkleFloat {
+      0% {
+        transform: translate(0, 0) scale(0) rotate(0deg);
+        opacity: 1;
+      }
+      45% {
+        transform: translate(var(--tx), var(--ty)) scale(1.3) rotate(90deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translate(calc(var(--tx) * 1.45), calc(var(--ty) * 1.45 - 14px)) scale(0) rotate(180deg);
+        opacity: 0;
+      }
+    }
+
+    .ornament-swing {
+      transform-origin: top center;
+      animation: gentleSwing 4.2s ease-in-out infinite alternate;
+    }
+    .ornament-swing-delayed {
+      transform-origin: top center;
+      animation: gentleSwing 4.8s ease-in-out 1.3s infinite alternate;
+    }
+
+    @keyframes gentleSwing {
+      0% { transform: rotate(-3.5deg); }
+      100% { transform: rotate(3.5deg); }
+    }
+
+    .menu-item {
+      transition: transform 0.25s ease, color 0.25s ease;
+      cursor: pointer;
+    }
+    .menu-item:hover {
+      transform: scale(1.08);
+      color: #b33b30;
+    }
+  </style>
+</head>
+<body class="select-none">
+
+  <canvas id="snowCanvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
+
+  <div class="fixed top-0 left-8 z-10 pointer-events-none hidden md:flex items-start gap-6">
+    <div class="ornament-swing flex flex-col items-center">
+      <div class="w-[1.5px] h-16 bg-[#e6c88a]/70"></div>
+      <div class="w-8 h-8 rounded-full bg-[#c83e31] shadow-md relative">
+        <div class="w-2.5 h-2.5 rounded-full bg-white/45 absolute top-1.5 left-1.5"></div>
+      </div>
+    </div>
+    <div class="ornament-swing-delayed flex flex-col items-center">
+      <div class="w-[1.5px] h-24 bg-[#e6c88a]/70"></div>
+      <div class="w-7 h-7 rounded-full bg-[#e2aa4a] shadow-md relative">
+        <div class="w-2 h-2 rounded-full bg-white/50 absolute top-1 left-1"></div>
+      </div>
+    </div>
+    <div class="ornament-swing flex flex-col items-center">
+      <div class="w-[1.5px] h-11 bg-[#e6c88a]/70"></div>
+      <div class="w-4 h-4 rounded-full bg-[#fffdf9] shadow"></div>
+    </div>
+  </div>
+
+  <div class="fixed top-0 right-10 z-10 pointer-events-none hidden md:flex items-start gap-6">
+    <div class="ornament-swing-delayed flex flex-col items-center">
+      <div class="w-[1.5px] h-11 bg-[#e6c88a]/70"></div>
+      <div class="w-6 h-6 rounded-full bg-[#e2aa4a] shadow-md relative">
+        <div class="w-1.5 h-1.5 rounded-full bg-white/50 absolute top-1 left-1"></div>
+      </div>
+    </div>
+    <div class="ornament-swing flex flex-col items-center">
+      <div class="w-[1.5px] h-18 bg-[#e6c88a]/70" style="height: 68px;"></div>
+      <div class="w-8 h-8 rounded-full bg-[#c83e31] shadow-md relative">
+        <div class="w-2.5 h-2.5 rounded-full bg-white/45 absolute top-1.5 left-1.5"></div>
+      </div>
+    </div>
+  </div>
+
+  <main class="relative z-10 w-full max-w-[1140px] mx-auto px-4 pt-4 pb-28 flex flex-col items-center">
+
+    <div class="relative w-full flex flex-col items-center justify-center mb-5">
+
+      <div class="header-pill px-8 sm:px-14 py-3.5 text-center max-w-2xl w-full cursor-pointer"
+           onclick="replayAllAnimations()"
+           title="클릭하면 초청 멤버 '샤라랑~' 효과가 다시 재생됩니다!">
+        <div class="text-white font-extrabold text-base sm:text-xl md:text-[22px] tracking-tight flex items-center justify-center gap-2">
+          <span>🎄 2026 연말 및 크리스마스 송년회 제안서</span>
+        </div>
+        <div class="seoritae-neon font-black text-2xl sm:text-3xl md:text-[32px] my-0.5 tracking-tight">
+          &lt;서리태 모임&gt;
+        </div>
+        <div class="text-white/95 font-bold text-xs sm:text-sm md:text-[15px] tracking-tight">
+          *<span class="text-[#ffe49e] font-extrabold">서</span>대문에서<span class="text-[#ffe49e] font-extrabold">re</span>(다시)<span class="text-[#ffe49e] font-extrabold">태</span>어나는
+        </div>
+      </div>
+
+      <div class="secret-stamp mt-3 lg:mt-0 lg:absolute lg:right-2 lg:top-2 p-1.5 rounded cursor-pointer"
+           onclick="replayAllAnimations()"
+           title="클릭하면 초청 멤버가 다시 샤라랑 등장합니다!">
+        <div class="secret-stamp-inner px-5 py-2 text-center">
+          <div class="text-white font-bold text-xs sm:text-sm tracking-wide">
+            1급 보안문서
+          </div>
+          <div class="text-[#f7c844] font-black text-base sm:text-lg tracking-wider leading-tight">
+            TOP SECRET
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="relative w-full grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-11 items-stretch">
+
+      <div class="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 w-[72px] h-[72px] rounded-full bg-[#b33b30] border-[3.5px] border-[#ecc373] shadow-xl items-center justify-center cursor-pointer hover:scale-110 transition"
+           onclick="replayAllAnimations()"
+           title="산타를 클릭하면 초청 멤버가 다시 샤라랑~ 나타납니다!">
+        <svg viewBox="0 0 120 120" class="w-16 h-16">
+          <polygon points="58,36 42,22 26,42" fill="#ffffff" />
+          <polygon points="62,36 78,22 94,42" fill="#ffffff" />
+          <ellipse cx="52" cy="40" rx="7" ry="9" fill="#ffffff" />
+          <ellipse cx="68" cy="40" rx="7" ry="9" fill="#ffffff" />
+          <ellipse cx="54" cy="42" rx="3.2" ry="4.2" fill="#1e1e1e" />
+          <ellipse cx="66" cy="42" rx="3.2" ry="4.2" fill="#1e1e1e" />
+          <ellipse cx="60" cy="76" rx="36" ry="22" fill="#ffffff" />
+          <circle cx="34" cy="68" r="14" fill="#ffffff" />
+          <circle cx="86" cy="68" r="14" fill="#ffffff" />
+          <ellipse cx="60" cy="86" rx="26" ry="18" fill="#ffffff" />
+          <ellipse cx="60" cy="60" rx="22" ry="10" fill="#b33b30" />
+          <ellipse cx="49" cy="67" rx="14" ry="6" fill="#ffffff" />
+          <ellipse cx="71" cy="67" rx="14" ry="6" fill="#ffffff" />
+        </svg>
+      </div>
+
+      <!-- 서리태 A안 -->
+      <div class="plan-card p-5 sm:p-6 flex flex-col justify-between"
+           onclick="triggerCardReveal('A')">
+        <div>
+          <div class="w-full py-2.5 px-4 rounded-xl bg-[#b33b30] text-white font-extrabold text-lg sm:text-xl flex items-center justify-center gap-2.5 shadow-sm">
+            <span>서리태 A안</span>
+            <span class="opacity-80">|</span>
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L7 7h10l-5-5z" />
+              <circle cx="17" cy="5" r="1.5" fill="currentColor" />
+              <rect x="6" y="7" width="12" height="2.5" rx="1" />
+              <circle cx="9.5" cy="12" r="0.8" fill="currentColor" />
+              <circle cx="14.5" cy="12" r="0.8" fill="currentColor" />
+              <path d="M6.5 13.5C6.5 17.5 9 21 12 21s5.5-3.5 5.5-7.5c-1.8 1-3.5 1-5.5 0-2 1-3.7 1-5.5 0z" />
+            </svg>
+          </div>
+
+          <div class="text-center my-5">
+            <h2 class="text-[#8c281f] font-extrabold text-xl sm:text-[22px] tracking-tight">
+              “연말 결산 라인업”
+            </h2>
+            <p class="text-[#526358] text-sm sm:text-[15px] mt-1 font-bold">
+              유쾌함 즐거움 UP!
+            </p>
+          </div>
+        </div>
+
+        <div id="stage-A"
+             class="guest-stage bg-[#fceeeb] border-[1.5px] border-[#b33b30] py-4 px-3 text-center"
+             title="클릭하면 초청 멤버가 샤라랑~ 다시 나타납니다!">
+          <div class="text-xs font-extrabold text-[#b33b30] mb-2">
+            초청 멤버
+          </div>
+          <div class="flex flex-wrap items-center justify-center gap-1 sm:gap-2 text-base sm:text-[19px]">
+            <span class="guest-name" data-group="A">전호일 전무님</span>
+            <span class="guest-dot font-bold text-[#1e2923]" data-dot="A">·</span>
+            <span class="guest-name" data-group="A">이지혜 차장님</span>
+            <span class="guest-dot font-bold text-[#1e2923]" data-dot="A">·</span>
+            <span class="guest-name" data-group="A">박보람 차장님</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 서리태 B안 -->
+      <div class="plan-card p-5 sm:p-6 flex flex-col justify-between"
+           onclick="triggerCardReveal('B')">
+        <div>
+          <div class="w-full py-2.5 px-4 rounded-xl bg-[#2e5a44] text-white font-extrabold text-lg sm:text-xl flex items-center justify-center gap-2.5 shadow-sm">
+            <span>서리태 B안</span>
+            <span class="opacity-80">|</span>
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L7 7h10l-5-5z" />
+              <circle cx="17" cy="5" r="1.5" fill="currentColor" />
+              <rect x="6" y="7" width="12" height="2.5" rx="1" />
+              <circle cx="9.5" cy="12" r="0.8" fill="currentColor" />
+              <circle cx="14.5" cy="12" r="0.8" fill="currentColor" />
+              <path d="M6.5 13.5C6.5 17.5 9 21 12 21s5.5-3.5 5.5-7.5c-1.8 1-3.5 1-5.5 0-2 1-3.7 1-5.5 0z" />
+            </svg>
+          </div>
+
+          <div class="text-center my-5">
+            <h2 class="text-[#1f4232] font-extrabold text-xl sm:text-[22px] tracking-tight">
+              “부서 경계 없는 라인업”
+            </h2>
+            <p class="text-[#526358] text-sm sm:text-[15px] mt-1 font-bold">
+              연말 텐션 UP!
+            </p>
+          </div>
+        </div>
+
+        <div id="stage-B"
+             class="guest-stage bg-[#ebf3ee] border-[1.5px] border-[#2e5a44] py-4 px-3 text-center"
+             title="클릭하면 초청 멤버가 샤라랑~ 다시 나타납니다!">
+          <div class="text-xs font-extrabold text-[#2e5a44] mb-2">
+            초청 멤버
+          </div>
+          <div class="flex flex-wrap items-center justify-center gap-1 sm:gap-2 text-base sm:text-[19px]">
+            <span class="guest-name" data-group="B">전호일 전무님</span>
+            <span class="guest-dot font-bold text-[#1e2923]" data-dot="B">·</span>
+            <span class="guest-name" data-group="B">김휘섭 팀장님</span>
+            <span class="guest-dot font-bold text-[#1e2923]" data-dot="B">·</span>
+            <span class="guest-name" data-group="B">박보람 차장님</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-11 mt-5">
+
+      <div class="rounded-2xl bg-[#fdfbf7] border-2 border-[#e2d9c5] py-4 px-5 text-center shadow-lg flex flex-col justify-center">
+        <div class="text-xs sm:text-sm font-extrabold text-[#8c281f] mb-2.5 flex items-center justify-center gap-1">
+          <span>📍 장소 및 메뉴 후보 (서대문역 인근)</span>
+        </div>
+        <div class="flex items-center justify-center gap-4 sm:gap-6 text-base sm:text-xl font-extrabold text-[#1e2923]">
+          <span class="menu-item flex items-center gap-1.5">
+            <span>🥓</span><span>삼겹살</span>
+          </span>
+          <span class="text-gray-400 font-normal">|</span>
+          <span class="menu-item flex items-center gap-1.5">
+            <span>🐟</span><span>제철 회</span>
+          </span>
+          <span class="text-gray-400 font-normal">|</span>
+          <span class="menu-item flex items-center gap-1.5">
+            <span>🍲</span><span>닭도리탕</span>
+          </span>
+        </div>
+      </div>
+
+      <div class="rounded-2xl bg-[#b33b30] border-2 border-[#f2c977] py-4 px-5 text-center shadow-lg flex flex-col justify-center">
+        <div class="text-white font-extrabold text-sm sm:text-[17px] flex items-center justify-center gap-2">
+          <span>📅 일정 : 이사 이후 ~ 12월 중 (평일 퇴근 후)</span>
+        </div>
+        <div class="text-[#faf0d7] font-bold text-xs sm:text-[15px] mt-1.5">
+          ☞ 멤버가 좁혀지면 일정도 조율해보겠습니다!
+        </div>
+      </div>
+
+    </div>
+
+    <button onclick="replayAllAnimations()"
+            class="mt-4 px-4 py-1.5 rounded-full bg-white/15 hover:bg-white/25 border border-[#f2c977]/60 text-[#faf0d7] text-xs font-bold flex items-center gap-1.5 backdrop-blur-sm shadow transition active:scale-95">
+      <span>✨ 초청 멤버 '샤라랑~' 등장 효과 다시 재생하기</span>
+    </button>
+
+  </main>
+
+  <div class="fixed bottom-0 left-0 right-0 z-0 pointer-events-none">
+    <svg viewBox="0 0 1920 185" class="w-full h-24 md:h-32" preserveAspectRatio="none">
+      <path d="M0,95 Q380,30 850,110 T1920,75 L1920,185 L0,185 Z" fill="#c7d8d0" opacity="0.92" />
+      <path d="M0,120 Q520,60 1080,130 T1920,95 L1920,185 L0,185 Z" fill="#f8faf8" />
+
+      <g transform="translate(80, 96) scale(0.85)">
+        <rect x="-4" y="25" width="8" height="12" fill="#6e4b32" />
+        <polygon points="0,0 -24,26 24,26" fill="#2b5843" />
+        <polygon points="0,-16 -20,10 20,10" fill="#2b5843" />
+        <polygon points="0,-30 -15,-6 15,-6" fill="#2b5843" />
+      </g>
+      <g transform="translate(150, 82) scale(1.15)">
+        <rect x="-4" y="25" width="8" height="12" fill="#6e4b32" />
+        <polygon points="0,0 -24,26 24,26" fill="#234937" />
+        <polygon points="0,-16 -20,10 20,10" fill="#234937" />
+        <polygon points="0,-30 -15,-6 15,-6" fill="#234937" />
+      </g>
+      <g transform="translate(265, 86) scale(0.8)">
+        <rect x="-4" y="25" width="8" height="12" fill="#6e4b32" />
+        <polygon points="0,0 -24,26 24,26" fill="#2b5843" />
+        <polygon points="0,-16 -20,10 20,10" fill="#2b5843" />
+        <polygon points="0,-30 -15,-6 15,-6" fill="#2b5843" />
+      </g>
+      <g transform="translate(380, 82)">
+        <circle cx="0" cy="18" r="13" fill="#ffffff" stroke="#2b5843" stroke-width="2" />
+        <circle cx="0" cy="0" r="9" fill="#ffffff" stroke="#2b5843" stroke-width="2" />
+      </g>
+      <g transform="translate(960, 106) scale(0.95)">
+        <rect x="-4" y="25" width="8" height="12" fill="#6e4b32" />
+        <polygon points="0,0 -24,26 24,26" fill="#2b5843" />
+        <polygon points="0,-16 -20,10 20,10" fill="#2b5843" />
+        <polygon points="0,-30 -15,-6 15,-6" fill="#2b5843" />
+      </g>
+      <g transform="translate(1290, 92) scale(0.85)">
+        <rect x="-4" y="25" width="8" height="12" fill="#6e4b32" />
+        <polygon points="0,0 -24,26 24,26" fill="#2b5843" />
+        <polygon points="0,-16 -20,10 20,10" fill="#2b5843" />
+        <polygon points="0,-30 -15,-6 15,-6" fill="#2b5843" />
+      </g>
+      <g transform="translate(1795, 84) scale(1.1)">
+        <rect x="-4" y="25" width="8" height="12" fill="#6e4b32" />
+        <polygon points="0,0 -24,26 24,26" fill="#234937" />
+        <polygon points="0,-16 -20,10 20,10" fill="#234937" />
+        <polygon points="0,-30 -15,-6 15,-6" fill="#2b5843" />
+      </g>
+      <g transform="translate(1860, 94) scale(0.8)">
+        <rect x="-4" y="25" width="8" height="12" fill="#6e4b32" />
+        <polygon points="0,0 -24,26 24,26" fill="#2b5843" />
+        <polygon points="0,-16 -20,10 20,10" fill="#2b5843" />
+        <polygon points="0,-30 -15,-6 15,-6" fill="#2b5843" />
+      </g>
+    </svg>
+
+    <div class="w-full text-center pb-2 -mt-6 relative z-10">
+      <span class="text-[11px] sm:text-xs font-extrabold text-[#8c281f]">
+        ⚠️ [CONFIDENTIAL / 대외비] 본 문서는 케이지모빌리티플랫폼 × 서대문 팸 핵심 멤버 초빙을 위한 1급 기밀 기획안입니다.
+      </span>
+    </div>
+  </div>
+
+  <script>
+    function spawnSparkles(nameEl) {
+      for (let i = 0; i < 8; i++) {
+        const sp = document.createElement('div');
+        sp.className = 'sparkle-particle';
+        const angle = (Math.PI * 2 * i) / 8 + (Math.random() * 0.4 - 0.2);
+        const dist = 22 + Math.random() * 28;
+        sp.style.setProperty('--tx', `${Math.cos(angle) * dist}px`);
+        sp.style.setProperty('--ty', `${Math.sin(angle) * dist}px`);
+
+        sp.style.left = `${nameEl.offsetLeft + nameEl.offsetWidth / 2 - 7 + (Math.random() * 30 - 15)}px`;
+        sp.style.top = `${nameEl.offsetTop + nameEl.offsetHeight / 2 - 7 + (Math.random() * 14 - 7)}px`;
+
+        sp.innerHTML = `<svg viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 0L14.8 9.2L24 12L14.8 14.8L12 24L9.2 14.8L0 12L9.2 9.2L12 0Z"/></svg>`;
+        nameEl.offsetParent.appendChild(sp);
+        setTimeout(() => sp.remove(), 1200);
+      }
+    }
+
+    function triggerCardReveal(group, baseDelay = 0) {
+      const stage = document.getElementById(`stage-${group}`);
+      const names = document.querySelectorAll(`.guest-name[data-group="${group}"]`);
+      const dots = document.querySelectorAll(`.guest-dot[data-dot="${group}"]`);
+
+      stage.classList.remove('shimmer-active');
+      names.forEach(n => n.classList.remove('revealed'));
+      dots.forEach(d => d.classList.remove('revealed'));
+
+      void stage.offsetWidth;
+
+      setTimeout(() => {
+        stage.classList.add('shimmer-active');
+        names.forEach((nameEl, idx) => {
+          setTimeout(() => {
+            nameEl.classList.add('revealed');
+            if (dots[idx]) dots[idx].classList.add('revealed');
+            spawnSparkles(nameEl);
+          }, idx * 320 + 200);
+        });
+      }, baseDelay);
+    }
+
+    function replayAllAnimations() {
+      triggerCardReveal('A', 250);
+      triggerCardReveal('B', 1350);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        replayAllAnimations();
+      }, 600);
+    });
+
+    const canvas = document.getElementById('snowCanvas');
+    const ctx = canvas.getContext('2d');
+    let W, H;
+    const flakes = [];
+
+    function resize() {
+      W = canvas.width = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    for (let i = 0; i < 60; i++) {
+      flakes.push({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        r: Math.random() * 3.2 + 1.2,
+        speedY: Math.random() * 0.6 + 0.25,
+        speedX: Math.random() * 0.4 - 0.2,
+        alpha: Math.random() * 0.5 + 0.18
+      });
+    }
+
+    function drawSnow() {
+      ctx.clearRect(0, 0, W, H);
+      for (const f of flakes) {
+        ctx.beginPath();
+        ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 255, 255, ${f.alpha})`;
+        ctx.fill();
+
+        f.y += f.speedY;
+        f.x += f.speedX + Math.sin(f.y * 0.015) * 0.22;
+
+        if (f.y > H) {
+          f.y = -8;
+          f.x = Math.random() * W;
+        }
+      }
+      requestAnimationFrame(drawSnow);
+    }
+    drawSnow();
+  </script>
+</body>
+</html>
