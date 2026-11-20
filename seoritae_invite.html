@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2026 연말 및 크리스마스 송년회 초대장 &lt;서리태 모임&gt;</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    @font-face {
+      font-family: 'Paperlogy-6SemiBold';
+      src: local('Paperlogy 6 SemiBold'),
+           local('Paperlogy-6SemiBold'),
+           local('페이퍼로지 6 SemiBold'),
+           local('페이퍼로지 6'),
+           url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-6SemiBold.woff2') format('woff2');
+      font-weight: 600;
+      font-style: normal;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: 'Paperlogy-6SemiBold', 'Paperlogy 6 SemiBold', '페이퍼로지 6 SemiBold', '페이퍼로지 6', 'Malgun Gothic', sans-serif !important;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background: linear-gradient(180deg, #1f4232 0%, #2a5540 60%, #2e5a44 100%);
+      color: #1e2923;
+      overflow-x: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Top Center Red Rounded Pill Banner (<서리태 모임>) */
+    .header-pill {
+      background: #b33b30;
+      border: 2.5px solid #f2c977;
+      border-radius: 9999px;
+      box-shadow:
+        0 14px 32px rgba(10, 28, 20, 0.45),
+        0 0 24px rgba(242, 201, 119, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25);
+      animation: headerFloat 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes headerFloat {
+      0% { transform: translateY(0px); }
+      100% { transform: translateY(-4px); }
+    }
+
+    /* Neon Shimmer on <서리태 모임> Title */
+    .seoritae-neon {
+      color: #ffffff;
+      text-shadow:
+        0 0 6px rgba(255, 245, 220, 0.9),
+        0 0 16px rgba(255, 195, 90, 0.8),
+        0 0 28px rgba(255, 140, 25, 0.55);
+      animation: neonGlow 2.8s ease-in-out infinite alternate;
+    }
+
+    @keyframes neonGlow {
+      0% {
+        text-shadow:
+          0 0 4px rgba(255, 245, 220, 0.7),
+          0 0 12px rgba(255, 195, 90, 0.55);
+      }
+      100% {
+        text-shadow:
+          0 0 10px #ffffff,
+          0 0 22px #ffd27d,
+          0 0 38px #ff9d2e;
+      }
+    }
+
+    /* Top-Right Confidential Stamp ("1급 보안문서 / TOP SECRET") */
+    .secret-stamp {
+      transform: rotate(-6.5deg);
+      background: #922724;
+      border: 3.5px solid #f2c977;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.38);
+      animation: stampSlam 0.65s cubic-bezier(0.22, 1.3, 0.36, 1) 0.25s both;
+    }
+
+    .secret-stamp-inner {
+      border: 1.5px dashed rgba(255, 255, 255, 0.85);
+    }
+
+    @keyframes stampSlam {
+      0% { transform: scale(2.3) rotate(-18deg); opacity: 0; }
+      70% { transform: scale(0.94) rotate(-5deg); opacity: 1; }
+      100% { transform: scale(1) rotate(-6.5deg); opacity: 1; }
+    }
+
+    /* Main Invitation Card */
+    .invite-card {
+      background: #fdfbf7;
+      border: 3px solid #f2c977;
+      border-radius: 24px;
+      box-shadow: 0 20px 48px rgba(10, 26, 18, 0.48);
+    }
+
+    /* ============================================================
+       "희미하다가 -> 샤라랑 나오는" Magical Shimmer Reveal Effect!
+       ============================================================ */
+    .guest-stage {
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+    }
+
+    .guest-stage::after {
+      content: '';
+      position: absolute;
+      top: -60%;
+      left: -130%;
+      width: 75%;
+      height: 220%;
+      background: linear-gradient(
+        115deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.15) 28%,
+        rgba(255, 236, 165, 0.92) 50%,
+        rgba(255, 255, 255, 0.15) 72%,
+        transparent 100%
+      );
+      transform: skewX(-25deg);
+      pointer-events: none;
+      opacity: 0;
+      z-index: 25;
+    }
+
+    .guest-stage.shimmer-active::after {
+      opacity: 1;
+      animation: lightSweep 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    @keyframes lightSweep {
+      0% { left: -130%; }
+      100% { left: 165%; }
+    }
+
+    /* Each Guest Row: Starts Faint & Blurry (희미한 상태) */
+    .guest-row {
+      position: relative;
+      background: #ffffff;
+      border: 1.5px solid #e7dcc6;
+      border-radius: 14px;
+      opacity: 0.12;
+      filter: blur(8px);
+      transform: translateY(10px) scale(0.95);
+      transition:
+        opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+        filter 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
+    }
+
+    .guest-row.revealed {
+      opacity: 1;
+      filter: blur(0px);
+      transform: translateY(0) scale(1);
+      animation: magicRowGlow 1.1s cubic-bezier(0.22, 1.25, 0.36, 1);
+    }
+
+    .guest-row.status-YES {
+      border-color: #2e5a44;
+      background: #f4faf6;
+      box-shadow: 0 4px 14px rgba(46, 90, 68, 0.12);
+    }
+
+    .guest-row.status-NO {
+      border-color: #cbd5e1;
+      background: #f8fafc;
+    }
+
+    @keyframes magicRowGlow {
+      0% {
+        opacity: 0.12;
+        filter: blur(8px) brightness(1);
+        transform: translateY(10px) scale(0.94);
+      }
+      50% {
+        opacity: 1;
+        filter: blur(0px) brightness(1.15);
+        transform: translateY(-2px) scale(1.02);
+        box-shadow: 0 0 24px rgba(245, 190, 60, 0.75);
+      }
+      100% {
+        opacity: 1;
+        filter: blur(0px) brightness(1);
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* Custom YES / NO Checkbox Buttons */
+    .rsvp-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 15px;
+      border-radius: 10px;
+      font-size: 0.92rem;
+      font-weight: 800;
+      border: 2px solid #d6cbb5;
+      background: #ffffff;
+      color: #64748b;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .rsvp-btn:hover {
+      transform: translateY(-1px);
+      border-color: #b33b30;
+    }
+
+    .rsvp-btn:active {
+      transform: scale(0.95);
+    }
+
+    .rsvp-box {
+      width: 18px;
+      height: 18px;
+      border-radius: 5px;
+      border: 2px solid #cbd5e1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #f8fafc;
+      transition: all 0.2s ease;
+      font-size: 12px;
+      color: transparent;
+    }
+
+    /* YES Active State */
+    .rsvp-btn.yes-active {
+      background: #2e5a44;
+      border-color: #1f4232;
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(46, 90, 68, 0.35);
+    }
+    .rsvp-btn.yes-active .rsvp-box {
+      background: #f2c977;
+      border-color: #f2c977;
+      color: #1f4232;
+    }
+
+    /* NO Active State */
+    .rsvp-btn.no-active {
+      background: #b33b30;
+      border-color: #8c281f;
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(179, 59, 48, 0.3);
+    }
+    .rsvp-btn.no-active .rsvp-box {
+      background: #ffffff;
+      border-color: #ffffff;
+      color: #b33b30;
+    }
+
+    /* Confirmed Attendee Badge Pop */
+    .confirmed-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 16px;
+      border-radius: 9999px;
+      background: #2e5a44;
+      color: #ffffff;
+      border: 1.5px solid #f2c977;
+      font-size: 0.95rem;
+      box-shadow: 0 4px 12px rgba(31, 66, 50, 0.25);
+      animation: badgePop 0.35s cubic-bezier(0.22, 1.35, 0.36, 1);
+    }
+
+    @keyframes badgePop {
+      0% { transform: scale(0.6); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    /* Floating Golden Sparkle Particles */
+    .sparkle-particle {
+      position: absolute;
+      pointer-events: none;
+      width: 15px;
+      height: 15px;
+      animation: sparkleFloat 1.15s ease-out forwards;
+      z-index: 40;
+    }
+
+    @keyframes sparkleFloat {
+      0% {
+        transform: translate(0, 0) scale(0) rotate(0deg);
+        opacity: 1;
+      }
+      45% {
+        transform: translate(var(--tx), var(--ty)) scale(1.3) rotate(90deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translate(calc(var(--tx) * 1.45), calc(var(--ty) * 1.45 - 14px)) scale(0) rotate(180deg);
+        opacity: 0;
+      }
+    }
+
+    /* Hanging Ornaments Gentle Swing */
+    .ornament-swing {
+      transform-origin: top center;
+      animation: gentleSwing 4.2s ease-in-out infinite alternate;
+    }
+    .ornament-swing-delayed {
+      transform-origin: top center;
+      animation: gentleSwing 4.8s ease-in-out 1.3s infinite alternate;
+    }
+
+    @keyframes gentleSwing {
+      0% { transform: rotate(-3.5deg); }
+      100% { transform: rotate(3.5deg); }
+    }
+
+    /* Sync Pulse Dot */
+    .sync-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 9999px;
+      background: #22c55e;
+      box-shadow: 0 0 8px #22c55e;
+      animation: pulseDot 1.8s infinite;
+    }
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.45; transform: scale(0.85); }
+    }
+  </style>
+</head>
+<body class="select-none">
+
+  <!-- Snowfall Canvas -->
+  <canvas id="snowCanvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
+
+  <!-- Hanging Christmas Ornaments -->
+  <div class="fixed top-0 left-8 z-10 pointer-events-none hidden md:flex items-start gap-6">
+    <div class="ornament-swing flex flex-col items-center">
+      <div class="w-[1.5px] h-16 bg-[#e6c88a]/70"></div>
+      <div class="w-8 h-8 rounded-full bg-[#c83e31] shadow-md relative">
+        <div class="w-2.5 h-2.5 rounded-full bg-white/45 absolute top-1.5 left-1.5"></div>
+      </div>
+    </div>
+    <div class="ornament-swing-delayed flex flex-col items-center">
+      <div class="w-[1.5px] h-24 bg-[#e6c88a]/70"></div>
+      <div class="w-7 h-7 rounded-full bg-[#e2aa4a] shadow-md relative">
+        <div class="w-2 h-2 rounded-full bg-white/50 absolute top-1 left-1"></div>
+      </div>
+    </div>
+    <div class="ornament-swing flex flex-col items-center">
+      <div class="w-[1.5px] h-11 bg-[#e6c88a]/70"></div>
+      <div class="w-4 h-4 rounded-full bg-[#fffdf9] shadow"></div>
+    </div>
+  </div>
+
+  <div class="fixed top-0 right-10 z-10 pointer-events-none hidden md:flex items-start gap-6">
+    <div class="ornament-swing-delayed flex flex-col items-center">
+      <div class="w-[1.5px] h-11 bg-[#e6c88a]/70"></div>
+      <div class="w-6 h-6 rounded-full bg-[#e2aa4a] shadow-md relative">
+        <div class="w-1.5 h-1.5 rounded-full bg-white/50 absolute top-1 left-1"></div>
+      </div>
+    </div>
+    <div class="ornament-swing flex flex-col items-center">
+      <div class="w-[1.5px] h-18 bg-[#e6c88a]/70" style="height: 68px;"></div>
+      <div class="w-8 h-8 rounded-full bg-[#c83e31] shadow-md relative">
+        <div class="w-2.5 h-2.5 rounded-full bg-white/45 absolute top-1.5 left-1.5"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Invitation Container -->
+  <main class="relative z-10 w-full max-w-[920px] mx-auto px-4 pt-4 pb-28 flex flex-col items-center">
+
+    <!-- Top Header Area: Center Red Pill (<서리태 모임>) + Top-Right Confidential Stamp -->
+    <div class="relative w-full flex flex-col items-center justify-center mb-4">
+
+      <div class="header-pill px-8 sm:px-14 py-3 text-center max-w-2xl w-full cursor-pointer"
+           onclick="replayAllAnimations()"
+           title="클릭하면 초청 멤버 '샤라랑~' 효과가 다시 재생됩니다!">
+        <div class="text-white font-extrabold text-base sm:text-xl md:text-[21px] tracking-tight flex items-center justify-center gap-2">
+          <span>🎄 2026 연말 및 크리스마스 송년회 초대장</span>
+        </div>
+        <div class="seoritae-neon font-black text-2xl sm:text-3xl md:text-[32px] my-0.5 tracking-tight">
+          &lt;서리태 모임&gt;
+        </div>
+        <div class="text-white/95 font-bold text-xs sm:text-sm md:text-[15px] tracking-tight">
+          *<span class="text-[#ffe49e] font-extrabold">서</span>대문에서<span class="text-[#ffe49e] font-extrabold">re</span>(다시)<span class="text-[#ffe49e] font-extrabold">태</span>어나는
+        </div>
+      </div>
+
+      <!-- Top-Right Tilted Stamp: "1급 보안문서 / TOP SECRET" -->
+      <div class="secret-stamp mt-3 lg:mt-0 lg:absolute lg:right-0 lg:top-1 p-1.5 rounded cursor-pointer"
+           onclick="replayAllAnimations()"
+           title="클릭하면 초청 멤버가 다시 샤라랑 등장합니다!">
+        <div class="secret-stamp-inner px-4 py-1.5 text-center">
+          <div class="text-white font-bold text-xs tracking-wide">
+            1급 보안문서
+          </div>
+          <div class="text-[#f7c844] font-black text-sm sm:text-base tracking-wider leading-tight">
+            TOP SECRET
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ============================================================
+         MAIN INVITATION CARD (All 4 VIP Members + Live RSVP Checkboxes)
+         ============================================================ -->
+    <div class="invite-card w-full p-5 sm:p-6">
+
+      <!-- Card Top Banner with Santa Badge -->
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-2 pb-3.5 mb-4 border-b-2 border-[#e8dfc8]">
+        <div class="flex items-center gap-3">
+          <!-- Cute Mini Santa Icon -->
+          <div class="w-11 h-11 rounded-full bg-[#b33b30] border-2 border-[#ecc373] shadow flex items-center justify-center shrink-0 cursor-pointer hover:scale-110 transition"
+               onclick="replayAllAnimations()"
+               title="클릭하면 샤라랑~ 애니메이션 다시 보기">
+            <svg viewBox="0 0 120 120" class="w-9 h-9">
+              <polygon points="58,36 42,22 26,42" fill="#ffffff" />
+              <polygon points="62,36 78,22 94,42" fill="#ffffff" />
+              <ellipse cx="52" cy="40" rx="7" ry="9" fill="#ffffff" />
+              <ellipse cx="68" cy="40" rx="7" ry="9" fill="#ffffff" />
+              <ellipse cx="54" cy="42" rx="3.2" ry="4.2" fill="#1e1e1e" />
+              <ellipse cx="66" cy="42" rx="3.2" ry="4.2" fill="#1e1e1e" />
+              <ellipse cx="60" cy="76" rx="36" ry="22" fill="#ffffff" />
+              <circle cx="34" cy="68" r="14" fill="#ffffff" />
+              <circle cx="86" cy="68" r="14" fill="#ffffff" />
+              <ellipse cx="60" cy="86" rx="26" ry="18" fill="#ffffff" />
+              <ellipse cx="60" cy="60" rx="22" ry="10" fill="#b33b30" />
+              <ellipse cx="49" cy="67" rx="14" ry="6" fill="#ffffff" />
+              <ellipse cx="71" cy="67" rx="14" ry="6" fill="#ffffff" />
+            </svg>
+          </div>
+          <div>
+            <div class="text-[#8c281f] font-extrabold text-lg sm:text-xl tracking-tight">
+              💌 서리태 모임 VIP 공식 초청 명단
+            </div>
+            <div class="text-[#526358] text-xs sm:text-sm">
+              참여 여부를 체크해 주시면 모든 분의 초대장에 실시간으로 반영됩니다!
+            </div>
+          </div>
+        </div>
+
+        <!-- Realtime Sync Status Pill -->
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#ebf3ee] border border-[#2e5a44]/30 text-xs text-[#1f4232]">
+          <span class="sync-dot"></span>
+          <span id="syncStatusText">실시간 동기화 중</span>
+        </div>
+      </div>
+
+      <!-- 4 Invited Members List (Shimmers in one by one!) -->
+      <div id="invite-stage" class="guest-stage bg-[#fceeeb]/70 border-[1.5px] border-[#b33b30]/40 p-3.5 sm:p-4">
+        <div class="flex flex-col gap-2.5" id="memberListContainer">
+
+          <!-- 1. 전호일 전무님 -->
+          <div class="guest-row px-4 py-3 flex flex-col sm:flex-row items-center justify-between gap-3" id="row-m1">
+            <div class="flex items-center gap-2.5">
+              <span class="w-7 h-7 rounded-full bg-[#b33b30] text-white text-xs flex items-center justify-center font-bold">1</span>
+              <span class="text-lg sm:text-xl font-extrabold text-[#1e2923]">전호일 전무님</span>
+              <span id="badge-m1" class="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-500">응답 대기</span>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <button type="button" onclick="toggleRSVP('m1', 'YES')" id="btn-m1-YES" class="rsvp-btn">
+                <span class="rsvp-box">✓</span>
+                <span>YES (참여)</span>
+              </button>
+              <button type="button" onclick="toggleRSVP('m1', 'NO')" id="btn-m1-NO" class="rsvp-btn">
+                <span class="rsvp-box">✓</span>
+                <span>NO (불참)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 2. 김휘섭 팀장님 -->
+          <div class="guest-row px-4 py-3 flex flex-col sm:flex-row items-center justify-between gap-3" id="row-m2">
+            <div class="flex items-center gap-2.5">
+              <span class="w-7 h-7 rounded-full bg-[#2e5a44] text-white text-xs flex items-center justify-center font-bold">2</span>
+              <span class="text-lg sm:text-xl font-extrabold text-[#1e2923]">김휘섭 팀장님</span>
+              <span id="badge-m2" class="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-500">응답 대기</span>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <button type="button" onclick="toggleRSVP('m2', 'YES')" id="btn-m2-YES" class="rsvp-btn">
+                <span class="rsvp-box">✓</span>
+                <span>YES (참여)</span>
+              </button>
+              <button type="button" onclick="toggleRSVP('m2', 'NO')" id="btn-m2-NO" class="rsvp-btn">
+                <span class="rsvp-box">✓</span>
+                <span>NO (불참)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 3. 이지혜 차장님 -->
+          <div class="guest-row px-4 py-3 flex flex-col sm:flex-row items-center justify-between gap-3" id="row-m3">
+            <div class="flex items-center gap-2.5">
+              <span class="w-7 h-7 rounded-full bg-[#b33b30] text-white text-xs flex items-center justify-center font-bold">3</span>
+              <span class="text-lg sm:text-xl font-extrabold text-[#1e2923]">이지혜 차장님</span>
+              <span id="badge-m3" class="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-500">응답 대기</span>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <button type="button" onclick="toggleRSVP('m3', 'YES')" id="btn-m3-YES" class="rsvp-btn">
+                <span class="rsvp-box">✓</span>
+                <span>YES (참여)</span>
+              </button>
+              <button type="button" onclick="toggleRSVP('m3', 'NO')" id="btn-m3-NO" class="rsvp-btn">
+                <span class="rsvp-box">✓</span>
+                <span>NO (불참)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 4. 박보람 차장님 -->
+          <div class="guest-row px-4 py-3 flex flex-col sm:flex-row items-center justify-between gap-3" id="row-m4">
+            <div class="flex items-center gap-2.5">
+              <span class="w-7 h-7 rounded-full bg-[#2e5a44] text-white text-xs flex items-center justify-center font-bold">4</span>
+              <span class="text-lg sm:text-xl font-extrabold text-[#1e2923]">박보람 차장님</span>
+              <span id="badge-m4" class="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-500">응답 대기</span>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <button type="button" onclick="toggleRSVP('m4', 'YES')" id="btn-m4-YES" class="rsvp-btn">
+                <span class="rsvp-box">✓</span>
+                <span>YES (참여)</span>
+              </button>
+              <button type="button" onclick="toggleRSVP('m4', 'NO')" id="btn-m4-NO" class="rsvp-btn">
+                <span class="rsvp-box">✓</span>
+                <span>NO (불참)</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ============================================================
+           CONFIRMED ATTENDEES LIVE SUMMARY BOARD (참여 확정 인원 표기)
+           ============================================================ -->
+      <div class="mt-4 rounded-2xl bg-[#1f4232] border-2 border-[#f2c977] p-4 text-center shadow-inner">
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-2 pb-2.5 mb-3 border-b border-white/15">
+          <div class="text-[#ffe49e] font-extrabold text-sm sm:text-base flex items-center gap-2">
+            <span>🎉 실시간 참여 확정 인원</span>
+          </div>
+          <div class="px-3.5 py-1 rounded-full bg-[#b33b30] border border-[#f2c977] text-white text-xs sm:text-sm font-extrabold">
+            총 <span id="confirmedCount" class="text-[#ffe49e] text-base">0</span>명 확정 / 4명 중
+          </div>
+        </div>
+
+        <!-- Confirmed Member Badges Render Here -->
+        <div id="confirmedListContainer" class="min-h-[42px] flex flex-wrap items-center justify-center gap-2.5">
+          <span class="text-white/70 text-xs sm:text-sm">
+            아직 참여 확정(YES)을 누른 분이 없습니다. 위 체크박스를 눌러주세요!
+          </span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ============================================================
+         BOTTOM BAR: 장소 및 메뉴 후보 & 일정
+         ============================================================ -->
+    <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mt-4">
+
+      <div class="rounded-2xl bg-[#fdfbf7] border-2 border-[#e2d9c5] py-3.5 px-5 text-center shadow-lg flex flex-col justify-center">
+        <div class="text-xs sm:text-sm font-extrabold text-[#8c281f] mb-2 flex items-center justify-center gap-1">
+          <span>📍 장소 및 메뉴 후보 (서대문역 인근)</span>
+        </div>
+        <div class="flex items-center justify-center gap-4 sm:gap-6 text-base sm:text-lg font-extrabold text-[#1e2923]">
+          <span class="flex items-center gap-1.5"><span>🥓</span><span>삼겹살</span></span>
+          <span class="text-gray-400 font-normal">|</span>
+          <span class="flex items-center gap-1.5"><span>🐟</span><span>제철 회</span></span>
+          <span class="text-gray-400 font-normal">|</span>
+          <span class="flex items-center gap-1.5"><span>🍲</span><span>닭도리탕</span></span>
+        </div>
+      </div>
+
+      <div class="rounded-2xl bg-[#b33b30] border-2 border-[#f2c977] py-3.5 px-5 text-center shadow-lg flex flex-col justify-center">
+        <div class="text-white font-extrabold text-sm sm:text-base flex items-center justify-center gap-2">
+          <span>📅 일정 : 이사 이후 ~ 12월 중 (평일 퇴근 후)</span>
+        </div>
+        <div class="text-[#faf0d7] font-bold text-xs sm:text-sm mt-1">
+          ☞ 참여 확정 인원에 맞춰 최적의 일정을 조율하겠습니다!
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Replay Button -->
+    <button onclick="replayAllAnimations()"
+            class="mt-3 px-4 py-1.5 rounded-full bg-white/15 hover:bg-white/25 border border-[#f2c977]/60 text-[#faf0d7] text-xs font-bold flex items-center gap-1.5 backdrop-blur-sm shadow transition active:scale-95">
+      <span>✨ 초청 멤버 '샤라랑~' 등장 효과 다시 보기</span>
+    </button>
+
+  </main>
+
+  <!-- ============================================================
+       BOTTOM ILLUSTRATED SNOWY HILLS, PINE TREES & CONFIDENTIAL FOOTER
+       ============================================================ -->
+  <div class="fixed bottom-0 left-0 right-0 z-0 pointer-events-none">
+    <svg viewBox="0 0 1920 185" class="w-full h-24 md:h-28" preserveAspectRatio="none">
+      <path d="M0,95 Q380,30 850,110 T1920,75 L1920,185 L0,185 Z" fill="#c7d8d0" opacity="0.92" />
+      <path d="M0,120 Q520,60 1080,130 T1920,95 L1920,185 L0,185 Z" fill="#f8faf8" />
+      <g transform="translate(80, 96) scale(0.85)">
+        <rect x="-4" y="25" width="8" height="12" fill="#6e4b32" />
+        <polygon points="0,0 -24,26 24,26" fill="#2b5843" />
+        <polygon points="0,-16 -20,10 20,10" fill="#2b5843" />
+        <polygon points="0,-30 -15,-6 15,-6" fill="#2b5843" />
+      </g>
+      <g transform="translate(150, 82) scale(1.15)">
+        <rect x="-4" y="25" width="8" height="12" fill="#6e4b32" />
+        <polygon points="0,0 -24,26 24,26" fill="#234937" />
+        <polygon points="0,-16 -20,10 20,10" fill="#234937" />
+        <polygon points="0,-30 -15,-6 15,-6" fill="#234937" />
+      </g>
+      <g transform="translate(380, 82)">
+        <circle cx="0" cy="18" r="13" fill="#ffffff" stroke="#2b5843" stroke-width="2" />
+        <circle cx="0" cy="0" r="9" fill="#ffffff" stroke="#2b5843" stroke-width="2" />
+      </g>
+      <g transform="translate(1795, 84) scale(1.1)">
+        <rect x="-4" y="25" width="8" height="12" fill="#6e4b32" />
+        <polygon points="0,0 -24,26 24,26" fill="#234937" />
+        <polygon points="0,-16 -20,10 20,10" fill="#234937" />
+        <polygon points="0,-30 -15,-6 15,-6" fill="#2b5843" />
+      </g>
+    </svg>
+
+    <div class="w-full text-center pb-1.5 -mt-6 relative z-10">
+      <span class="text-[11px] sm:text-xs font-extrabold text-[#8c281f]">
+        ⚠️ [CONFIDENTIAL / 대외비] 본 문서는 케이지모빌리티플랫폼 × 서대문 팸 핵심 멤버 초빙을 위한 1급 기밀 초대장입니다.
+      </span>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       JAVASCRIPT: Realtime Cloud Sync (ntfy Pub/Sub) + Shimmer Engine
+       ============================================================ -->
+  <script>
+    const MEMBERS = [
+      { id: 'm1', name: '전호일 전무님' },
+      { id: 'm2', name: '김휘섭 팀장님' },
+      { id: 'm3', name: '이지혜 차장님' },
+      { id: 'm4', name: '박보람 차장님' }
+    ];
+
+    // Unique Realtime Topic on ntfy.sh (Supports Poll History + Instant Server-Sent Events!)
+    const SYNC_TOPIC = 'kcar_seoritae_2026_invite_sync_v2';
+    const LOCAL_KEY  = 'kcar_seoritae_2026_rsvp_state_v2';
+
+    // State per member: { status: 'NONE' | 'YES' | 'NO', ts: timestamp }
+    let rsvpState = {
+      m1: { status: 'NONE', ts: 0 },
+      m2: { status: 'NONE', ts: 0 },
+      m3: { status: 'NONE', ts: 0 },
+      m4: { status: 'NONE', ts: 0 }
+    };
+
+    // Load cached state from localStorage first for instant UI
+    try {
+      const saved = localStorage.getItem(LOCAL_KEY);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        MEMBERS.forEach(m => {
+          if (parsed[m.id] && parsed[m.id].ts >= rsvpState[m.id].ts) {
+            rsvpState[m.id] = parsed[m.id];
+          }
+        });
+      }
+    } catch (e) {}
+
+    // Update DOM UI according to rsvpState
+    function renderRSVP() {
+      const confirmedNames = [];
+
+      MEMBERS.forEach(m => {
+        const st = (rsvpState[m.id] && rsvpState[m.id].status) || 'NONE';
+        const row = document.getElementById(`row-${m.id}`);
+        const btnYes = document.getElementById(`btn-${m.id}-YES`);
+        const btnNo  = document.getElementById(`btn-${m.id}-NO`);
+        const badge  = document.getElementById(`badge-${m.id}`);
+
+        row.classList.remove('status-YES', 'status-NO');
+        btnYes.classList.remove('yes-active');
+        btnNo.classList.remove('no-active');
+
+        if (st === 'YES') {
+          row.classList.add('status-YES');
+          btnYes.classList.add('yes-active');
+          badge.textContent = '참여 확정!';
+          badge.className = 'text-xs px-2.5 py-0.5 rounded-full bg-[#2e5a44] text-[#ffe49e] font-bold';
+          confirmedNames.push(m.name);
+        } else if (st === 'NO') {
+          row.classList.add('status-NO');
+          btnNo.classList.add('no-active');
+          badge.textContent = '아쉬운 불참';
+          badge.className = 'text-xs px-2.5 py-0.5 rounded-full bg-[#fceeeb] text-[#b33b30] font-bold';
+        } else {
+          badge.textContent = '응답 대기';
+          badge.className = 'text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-500';
+        }
+      });
+
+      // Update Bottom Confirmed Attendees Summary
+      document.getElementById('confirmedCount').textContent = confirmedNames.length;
+      const listEl = document.getElementById('confirmedListContainer');
+
+      if (confirmedNames.length === 0) {
+        listEl.innerHTML = `<span class="text-white/75 text-xs sm:text-sm">아직 참여 확정(YES)을 선택하신 분이 없습니다. 위에서 YES를 눌러주세요!</span>`;
+      } else {
+        listEl.innerHTML = confirmedNames.map(name => `
+          <span class="confirmed-badge">
+            <span class="text-[#ffe49e]">★</span>
+            <span>${name}</span>
+          </span>
+        `).join('');
+      }
+    }
+
+    // Merge incoming remote state using per-member timestamp (Last-Write-Wins)
+    function mergeIncomingState(payloadStr) {
+      try {
+        const data = JSON.parse(payloadStr);
+        if (!data || typeof data !== 'object') return;
+        let changed = false;
+
+        MEMBERS.forEach(m => {
+          const incoming = data[m.id];
+          if (incoming && typeof incoming.ts === 'number') {
+            if (incoming.ts > (rsvpState[m.id]?.ts || 0)) {
+              rsvpState[m.id] = { status: incoming.status, ts: incoming.ts };
+              changed = true;
+            }
+          }
+        });
+
+        if (changed) {
+          localStorage.setItem(LOCAL_KEY, JSON.stringify(rsvpState));
+          renderRSVP();
+        }
+      } catch (e) {}
+    }
+
+    // Toggle YES / NO when user clicks a checkbox button
+    async function toggleRSVP(memberId, choice) {
+      const current = rsvpState[memberId]?.status || 'NONE';
+      // Clicking the already active choice toggles it back to NONE
+      const nextStatus = (current === choice) ? 'NONE' : choice;
+      const now = Date.now();
+
+      rsvpState[memberId] = { status: nextStatus, ts: now };
+      localStorage.setItem(LOCAL_KEY, JSON.stringify(rsvpState));
+      renderRSVP();
+
+      if (nextStatus === 'YES') {
+        const rowEl = document.getElementById(`row-${memberId}`);
+        spawnSparkles(rowEl);
+      }
+
+      // Broadcast to all invitation holders in realtime
+      const syncText = document.getElementById('syncStatusText');
+      syncText.textContent = '실시간 반영 중...';
+
+      try {
+        await fetch(`https://ntfy.sh/${SYNC_TOPIC}`, {
+          method: 'POST',
+          body: JSON.stringify(rsvpState)
+        });
+        syncText.textContent = '모든 초대장에 실시간 반영됨 ✓';
+      } catch (err) {
+        syncText.textContent = '실시간 동기화 중';
+      }
+    }
+
+    // 1) Fetch entire recent history on page load so new visitors immediately see the latest selections
+    async function fetchInitialRemoteState() {
+      try {
+        const res = await fetch(`https://ntfy.sh/${SYNC_TOPIC}/json?poll=1&since=all`, {
+          cache: 'no-store'
+        });
+        const text = await res.text();
+        const lines = text.trim().split('\n');
+        for (const line of lines) {
+          if (!line) continue;
+          try {
+            const evt = JSON.parse(line);
+            if (evt.event === 'message' && evt.message) {
+              mergeIncomingState(evt.message);
+            }
+          } catch (e) {}
+        }
+      } catch (err) {}
+    }
+
+    // 2) Subscribe to live Server-Sent Events (SSE) stream so changes from anyone appear in < 0.5s
+    function subscribeRealtimeStream() {
+      try {
+        const es = new EventSource(`https://ntfy.sh/${SYNC_TOPIC}/sse`);
+        es.onmessage = (e) => {
+          try {
+            const evt = JSON.parse(e.data);
+            if (evt.event === 'message' && evt.message) {
+              mergeIncomingState(evt.message);
+            }
+          } catch (err) {}
+        };
+      } catch (e) {}
+
+      // Fallback periodic poll every 4 seconds in case corporate firewall blocks SSE streams
+      setInterval(fetchInitialRemoteState, 4000);
+    }
+
+    // ============================================================
+    // "희미하다가 -> 샤라랑~" Shimmer & Sparkle Animation
+    // ============================================================
+    function spawnSparkles(targetEl) {
+      for (let i = 0; i < 8; i++) {
+        const sp = document.createElement('div');
+        sp.className = 'sparkle-particle';
+        const angle = (Math.PI * 2 * i) / 8 + (Math.random() * 0.4 - 0.2);
+        const dist = 25 + Math.random() * 32;
+        sp.style.setProperty('--tx', `${Math.cos(angle) * dist}px`);
+        sp.style.setProperty('--ty', `${Math.sin(angle) * dist}px`);
+
+        sp.style.left = `${targetEl.offsetLeft + targetEl.offsetWidth / 3 + (Math.random() * 60 - 30)}px`;
+        sp.style.top = `${targetEl.offsetTop + targetEl.offsetHeight / 2 - 7 + (Math.random() * 16 - 8)}px`;
+
+        sp.innerHTML = `<svg viewBox="0 0 24 24" fill="#f59e0b"><path d="M12 0L14.8 9.2L24 12L14.8 14.8L12 24L9.2 14.8L0 12L9.2 9.2L12 0Z"/></svg>`;
+        targetEl.offsetParent.appendChild(sp);
+        setTimeout(() => sp.remove(), 1200);
+      }
+    }
+
+    function replayAllAnimations() {
+      const stage = document.getElementById('invite-stage');
+      const rows = document.querySelectorAll('.guest-row');
+
+      stage.classList.remove('shimmer-active');
+      rows.forEach(r => r.classList.remove('revealed'));
+
+      void stage.offsetWidth;
+
+      setTimeout(() => {
+        stage.classList.add('shimmer-active');
+        rows.forEach((rowEl, idx) => {
+          setTimeout(() => {
+            rowEl.classList.add('revealed');
+            spawnSparkles(rowEl);
+          }, idx * 280 + 180);
+        });
+      }, 200);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      renderRSVP();
+      fetchInitialRemoteState();
+      subscribeRealtimeStream();
+      setTimeout(replayAllAnimations, 500);
+    });
+
+    // Gentle Christmas Snowfall Canvas
+    const canvas = document.getElementById('snowCanvas');
+    const ctx = canvas.getContext('2d');
+    let W, H;
+    const flakes = [];
+
+    function resize() {
+      W = canvas.width = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    for (let i = 0; i < 60; i++) {
+      flakes.push({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        r: Math.random() * 3.2 + 1.2,
+        speedY: Math.random() * 0.6 + 0.25,
+        speedX: Math.random() * 0.4 - 0.2,
+        alpha: Math.random() * 0.5 + 0.18
+      });
+    }
+
+    function drawSnow() {
+      ctx.clearRect(0, 0, W, H);
+      for (const f of flakes) {
+        ctx.beginPath();
+        ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 255, 255, ${f.alpha})`;
+        ctx.fill();
+
+        f.y += f.speedY;
+        f.x += f.speedX + Math.sin(f.y * 0.015) * 0.22;
+
+        if (f.y > H) {
+          f.y = -8;
+          f.x = Math.random() * W;
+        }
+      }
+      requestAnimationFrame(drawSnow);
+    }
+    drawSnow();
+  </script>
+</body>
+</html>
